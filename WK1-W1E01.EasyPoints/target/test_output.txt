@@ -1,0 +1,1 @@
+[{"className":"wad.easypoints.EasyPointsTest","methodName":"nothingToTest","pointNames":["W1E01"],"status":"PASSED"}]

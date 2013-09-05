@@ -1,0 +1,2 @@
+TMC-specific file that is used to verify that the source packages-folder is 
+visible to users. Only required if there are no sources attached to the project.

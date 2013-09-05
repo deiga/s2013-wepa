@@ -9,6 +9,10 @@
     </head>
     <body>
         <h1>Kumpula LoveMeter</h1>
-
+        <form action="love">
+            <label for="">First Name: <br><input type="text" id="name1" name="name1"></label>
+            <label for="">Second Name: <br><input type="text" id="name2" name="name2"></label>
+            <input type="submit" value="Calculate">
+        </form>
     </body>
 </html>

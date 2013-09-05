@@ -10,6 +10,14 @@
         <h1>My Albums</h1>
         
         <!-- tee tehtävä tänne! -->
+        <c:forEach var="albumName" items="${albums}">
+            ${albumName.getName()}
+            <br>
+            <c:forEach var="trackName" items="${albumName.getTracks()}">
+                 - ${trackName}
+                <br>
+            </c:forEach>
+        </c:forEach>
 
     </body>
 </html>

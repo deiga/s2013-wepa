@@ -25,12 +25,19 @@ public class KnockKnockClient {
         // Luetaan viestejä palvelimelta
         while (serverMessageScanner.hasNextLine()) {
             // 1. lue viesti palvelimelta
+            String message = serverMessageScanner.nextLine();
             // 2. tulosta palvelimen viesti standarditulostusvirtaan näkyville
+            System.out.println(message);
 
             // 3. jos palvelimen viesti loppuu merkkijonon "Bye.", poistu toistolausekkeesta
+            if (message.endsWith("Bye.")) {
+                break;
+            }
 
             // 4. pyydä käyttäjältä palvelimelle lähetettävää viestiä
+            System.out.println("Type a message to be sent to the server:");            
             // 5. kirjoita lähetettävä viesti palvelimelle. Huom! Käytä println-metodia.
+            clientMessageWriter.println(userInputScanner.nextLine());
         }
     }
 }

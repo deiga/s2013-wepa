@@ -20,6 +20,12 @@
     <dependencies>
         <!-- Add the needed Spring dependency here -->
         
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>3.2.4.RELEASE</version>
+        </dependency>
+        
         <!-- Configurations below for various tests and tinkering -->
         <!-- Selenium -->     
         <dependency>

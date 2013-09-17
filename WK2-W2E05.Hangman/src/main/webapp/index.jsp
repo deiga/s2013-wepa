@@ -6,6 +6,6 @@
         <title>Hangman</title>
     </head>
     <body>
-        <h1><a href="app/start">Play? TODO: fiksaa osoite tarvittaessa (ja poista tämä teksti)</a></h1>
+        <h1><a href="app/start">Play Hangman</a></h1>
     </body>
 </html>

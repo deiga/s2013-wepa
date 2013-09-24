@@ -42,8 +42,9 @@ public class InMemoryHangmanGameService implements HangmanGameService {
         if (!isValidGuess(status, character)) {
             return status;
         }
-        
         // ADD THE "IMPROVEMENTS" HERE
+        List<String> wordOptions = wordService.getWordOptions(status.getUsed(), character);
+        status.setRealWord(wordOptions.get(Double.valueOf(Math.random()*(wordOptions.size()-1)).intValue()));
         status.getUsed().add(character);
 
         if (!status.getRealWord().contains(character)) {

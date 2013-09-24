@@ -2,6 +2,7 @@ package wad.hangman;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import org.springframework.stereotype.Service;
@@ -114,6 +115,45 @@ public class InMemoryWordService implements WordService {
     @Override
     public String getWord() {
         return words.get(new Random().nextInt(words.size()));
+    }
+
+    @Override
+    public List<String> getWordOptions(List<String> existingGuesses, String newGuess) {
+        List<String> wordsCopy = new ArrayList(words);
+        List<String> removed;
+        for (String character : existingGuesses) {
+            removed = new ArrayList<String>();
+            final Iterator<String> iterator = wordsCopy.iterator();
+            
+            while (iterator.hasNext()) {
+                String word = iterator.next();
+                if (word.contains(character)) {
+                    iterator.remove();
+                    removed.add(word);
+                }
+            }
+            if (wordsCopy.isEmpty()) {
+                wordsCopy.addAll(removed);
+                break;
+            }
+        }
+        
+        removed = new ArrayList<String>();
+        final Iterator<String> iterator = wordsCopy.iterator();
+            
+        while (iterator.hasNext()) {
+            String word = iterator.next();
+            if (word.contains(newGuess)) {
+                iterator.remove();
+                removed.add(word);
+            }
+        }
+        if (wordsCopy.isEmpty()) {
+            wordsCopy.addAll(removed);
+
+        }
+        
+        return wordsCopy;
     }
 
 }

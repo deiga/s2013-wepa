@@ -1,0 +1,1 @@
+retain folder wad.storage

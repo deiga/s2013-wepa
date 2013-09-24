@@ -1,0 +1,3 @@
+implement your repositories here!
+
+(if you do it elsewhere, remember to change the database.xml -configuration)

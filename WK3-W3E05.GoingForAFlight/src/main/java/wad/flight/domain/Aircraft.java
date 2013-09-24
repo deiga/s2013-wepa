@@ -18,6 +18,18 @@ public class Aircraft implements Serializable {
     private Long id;
     @Column(name = "NAME")
     private String name;
+    
+    @ManyToOne
+    @JoinColumn
+    private Airport airport;
+
+    public void setAirport(Airport airport) {
+        this.airport = airport;
+    }
+
+    public Airport getAirport() {
+        return airport;
+    }
 
     public Long getId() {
         return id;

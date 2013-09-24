@@ -39,8 +39,17 @@ public class AircraftController implements AircraftControllerInterface {
         return "redirect:/app/aircrafts/";
     }
 
-    public String assignAirport(Long aircraftId, Long airportId) {
-    return null; // got fired before I got to finish this :(
+    @RequestMapping(value = "aircrafts/{aircraftId}/airports", method = RequestMethod.POST, params = "airportId")
+    @Override
+    public String assignAirport(@PathVariable Long aircraftId, @RequestParam Long airportId) {
+        Aircraft update = aircraftRepository.findOne(aircraftId);
+        Airport foo = airportRepository.findOne(airportId);
+        update.setAirport(foo);
+        foo.getAircrafts().add(update);
+        aircraftRepository.save(update);
+        airportRepository.save(foo);
+        
+        return "redirect:/app/aircrafts/";
     }
     
 }

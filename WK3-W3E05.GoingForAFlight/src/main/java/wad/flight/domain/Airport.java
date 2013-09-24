@@ -21,6 +21,17 @@ public class Airport implements Serializable {
     private String identifier;
     @Column(name = "NAME")
     private String name;
+    
+    @OneToMany(mappedBy = "airport")
+    private List<Aircraft> aircrafts;
+
+    public List<Aircraft> getAircrafts() {
+        return aircrafts;
+    }
+
+    public void setAircrafts(List<Aircraft> aircrafts) {
+        this.aircrafts = aircrafts;
+    }
 
     public Long getId() {
         return id;

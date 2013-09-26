@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Oh hi! Something funny is happening.</title>
+        <style type="text/css" title="style">
+            @import "css/demo_page.css";
+            @import "css/demo_table.css";
+        </style>
+    </head>
+    <body>
+        <table id="books" width="100%">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Pages</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#books").dataTable({
+                    "bProcessing": true,
+                    "bServerSide": true,
+                    "bSort": false,
+                    "bLengthChange": false,
+                    "bPaginate": false,
+                    "sAjaxSource": "app/books",
+                    "sServerMethod": "POST",
+                    "aoColumns": [
+                        {"mDataProp": "title"},
+                        {"mDataProp": "pages"}
+                    ]
+                });
+            });
+        </script>
+    </body>
+</html>

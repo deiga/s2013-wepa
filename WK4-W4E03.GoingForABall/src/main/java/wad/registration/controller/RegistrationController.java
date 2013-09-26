@@ -25,6 +25,29 @@ public class RegistrationController {
             @RequestParam(value = "address") String address,
             @RequestParam(value = "email") String email) {
 
+        boolean error = false;
+        if (name.length() < 4 || name.length() > 30) {
+            error = true;
+            model.addAttribute("nameError", "Length of name should be between 4 and 30.");
+        }
+
+        if (address.length() < 4 || address.length() > 50) {
+            error = true;
+            model.addAttribute("addressError", "Length of address should be between 4 and 50.");
+        }
+
+        if (!email.contains("@")) {
+            error = true;
+            model.addAttribute("emailError", "Email should contain a @-character.");
+        }
+        if (error) {
+            model.addAttribute("name", name);
+            model.addAttribute("address", address);
+            model.addAttribute("email", email);
+
+            return "form";
+        }
+
         registrationService.register(name, address, email);
         return "redirect:success";
     }
@@ -38,5 +61,4 @@ public class RegistrationController {
     public String success() {
         return "success";
     }
-
 }

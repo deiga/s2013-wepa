@@ -32,34 +32,35 @@ public class BeerSeleniumTest {
     
     @Test
     public void submitAndVerify() {
-        driver.get(baseUrl+"/beers");
+        driver.get(baseUrl+"/app/beers");
         
         assertFalse(driver.getPageSource().contains("Up Up Down Down Left Right Left Right BA Select"));
-        WebElement element = driver.findElement(By.id("name"));
-        element.sendKeys("Up Up Down Down Left Right Left Right BA Select");
-        element.submit();
+        driver.findElement(By.id("name")).sendKeys("Up Up Down Down Left Right Left Right BA Select");
+        driver.findElement(By.cssSelector("input[type=\"submit\"][value=\"ADD!\"]")).click();
         assertTrue(driver.getPageSource().contains("Up Up Down Down Left Right Left Right BA Select"));
         
     }
     
     @Test
     public void submitThreeAndVerify() {
-        driver.get(baseUrl+"/beers");
+        driver.get(baseUrl+"/app/beers");
         assertFalse(driver.getPageSource().contains("Gargamel Ale"));
         assertFalse(driver.getPageSource().contains("Crazy Ivan"));
         assertFalse(driver.getPageSource().contains("Hoptimus Prime"));
         
-        WebElement element = driver.findElement(By.id("name"));
-        element.sendKeys("Gargamel Ale");
-        element.submit();
+        driver.findElement(By.id("name")).sendKeys("Gargamel Ale");
+        driver.findElement(By.cssSelector("input[type=\"submit\"][value=\"ADD!\"]")).click();
+        assertTrue(driver.getPageSource().contains("Gargamel Ale"));
         
-        element = driver.findElement(By.id("name"));
-        element.sendKeys("Crazy Ivan");
-        element.submit();
+        driver.findElement(By.id("name")).sendKeys("Crazy Ivan");
+        driver.findElement(By.cssSelector("input[type=\"submit\"][value=\"ADD!\"]")).click();
+        assertTrue(driver.getPageSource().contains("Crazy Ivan"));
         
-        element = driver.findElement(By.id("name"));
-        element.sendKeys("Hoptimus Prime");
-        element.submit();
+        driver.findElement(By.id("name")).sendKeys("Hoptimus Prime");
+        driver.findElement(By.cssSelector("input[type=\"submit\"][value=\"ADD!\"]")).click();
+        assertTrue(driver.getPageSource().contains("Hoptimus Prime"));
+        
+        driver.findElement(By.linkText("List")).click();
         
         assertTrue(driver.getPageSource().contains("Gargamel Ale"));
         assertTrue(driver.getPageSource().contains("Crazy Ivan"));

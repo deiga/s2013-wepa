@@ -21,6 +21,9 @@
         <h2>Delete</h2>
         
         <!-- Lisää lomake Sleepin poistamiseen tähän. Huom! käytä metodina DELETEä -->
+        <form:form action="sleeps/${sleep.id}" method="DELETE">
+            <input type="submit" />
+        </form:form>
         
         
     </body>

@@ -22,8 +22,11 @@ public class RegistrationController {
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(
-            @ModelAttribute("registration") Registration registration,
+            @Valid @ModelAttribute("registration") Registration registration,
             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "form";
+        }
 
         registrationService.register(registration);
         return "redirect:success";

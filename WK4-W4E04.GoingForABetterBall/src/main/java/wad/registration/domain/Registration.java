@@ -1,10 +1,16 @@
 package wad.registration.domain;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+
 
 public class Registration {
 
+    @Length(min = 4, max = 30)
     private String name;
+    @Length(min = 4, max = 50)
     private String address;
+    @Email
     private String email;
 
     public Registration() {

@@ -1,11 +1,17 @@
 package wad.ordering.domain;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 public class Order {
 
     private String id;
+    @Length(min = 4, max = 30)
     private String name;
+    @Length(min = 4, max = 50)
     private String address;
+    @NotEmpty
     private String[] items;
 
     public Order() {

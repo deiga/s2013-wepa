@@ -41,13 +41,20 @@ public class OrderController {
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
     public String submitOrder(
-            @ModelAttribute("order") Order order,
+            RedirectAttributes redirectAttributes,
+            @Valid @ModelAttribute("order") Order order,
             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "form";
+        }
+       
 
         order = orderService.placeOrder(order);
+        redirectAttributes.addAttribute("orderId", order.getId());
+        redirectAttributes.addFlashAttribute("message", "Order placed!");
 
 
-        return "redirect:/app/order/";
+        return "redirect:/app/order/{orderId}";
     }
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)

@@ -17,8 +17,8 @@ public class BooksController {
 
     @RequestMapping(value = "/books", method = RequestMethod.POST)
     @ResponseBody
-    public DataTablesResponse getBooks(@RequestParam("sSearch") String queryString, @RequestParam("sEcho") String echo) {
-        DataTablesResponse response = bookService.getBooks(queryString);
+    public DataTablesResponse getBooks(@RequestParam("sSearch") String queryString, @RequestParam("sEcho") String echo, @RequestParam(value = "sPage", defaultValue = "0") Integer page) {
+        DataTablesResponse response = bookService.getBooks(queryString, page);
         response.setEcho(echo);
         return response;
     }

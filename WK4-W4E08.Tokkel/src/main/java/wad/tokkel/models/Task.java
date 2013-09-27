@@ -21,7 +21,7 @@ public class Task extends AbstractModel {
   private Date stoppedTime;
 
   @JsonIgnore
-  @ManyToOne(fetch = FetchType.EAGER, optional = true)
+  @ManyToOne(fetch = FetchType.EAGER, optional = true, cascade={CascadeType.MERGE, CascadeType.PERSIST})
   @JoinColumn(name = "projectId", nullable = true)
   private Project project;
 

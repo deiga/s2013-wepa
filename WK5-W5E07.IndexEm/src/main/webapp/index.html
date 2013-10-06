@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Oh hi! Something funny is happening.</title>
+        <style type="text/css" title="style">
+            @import "css/demo_page.css";
+            @import "css/demo_table.css";
+        </style>
+    </head>
+    <body>
+        <div>
+            Search (exact):<br/>
+            <input type="text" id="queryString" value="2012"/><br/>
+            Search by:<br/>
+            <select id="queryColumn">
+                <option value="publicationYear" selected>Publication Year</option>
+                <option value="title">Title</option>
+                <option value="isbn">Isbn</option>
+                <option value="imprint">Imprint</option>
+            </select>
+            <input type="button" id="search" value="Search!"/>
+        </div>  
+
+        <table id="books" width="100%">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Imprint</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                    <td>Row 1 Data 3</td>
+                    <td>Row 1 Data 4</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                    <td>Row 2 Data 3</td>
+                    <td>Row 2 Data 4</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" language="javascript" src="js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                var DT = null;
+                $("#queryColumn").find(":selected").text();
+                $("#search").click(function() {
+                    var qs = $("#queryString").val();
+                    var qc = $("#queryColumn").find(":selected").val();
+                    console.log(qs);
+                    console.log(qc);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "app/books",
+                        data: "query=" + qs + "&field=" + qc,
+                        success: function(data) {
+                            console.log("result received!");
+                            console.log(data);
+                            DT.fnClearTable();
+                            DT.fnAddData(data.aaData);
+                        },
+                        dataType: "json"
+                    });
+                });
+
+
+                DT = $("#books").dataTable({
+                    "bFilter": false,
+                    "bProcessing": false,
+                    "bServerSide": false,
+                    "bSort": false,
+                    "bLengthChange": false,
+                    "bPaginate": false,
+                    "sAjaxSource": "app/books",
+                    "sServerMethod": "POST",
+                    "aoColumns": [
+                        {"mDataProp": "publicationYear"},
+                        {"mDataProp": "isbn"},
+                        {"mDataProp": "title"},
+                        {"mDataProp": "imprint"}
+                    ]
+                });
+            });
+        </script>
+    </body>
+</html>

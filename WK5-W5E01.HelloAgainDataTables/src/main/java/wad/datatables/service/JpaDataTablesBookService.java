@@ -1,6 +1,7 @@
 package wad.datatables.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,7 @@ public class JpaDataTablesBookService implements DataTablesBookService {
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable("books")
     public DataTablesResponse getBooks(String queryString) {
         Pageable pageable = new PageRequest(0, 10, Sort.Direction.ASC, "title");
         Page<Book> page = bookRepository.findByTitleContaining(queryString, pageable);

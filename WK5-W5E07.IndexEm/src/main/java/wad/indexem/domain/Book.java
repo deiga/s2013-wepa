@@ -3,14 +3,18 @@ package wad.indexem.domain;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import org.eclipse.persistence.annotations.Index;
 
 @Entity
 public class Book implements Serializable {
 
     @Id
     private String isbn;
+    @Index
     private String title;
+    @Index
     private Integer publicationYear;
+    @Index
     private String imprint;
 
     public Book() {

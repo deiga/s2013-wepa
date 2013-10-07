@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import wad.heavycalc.domain.CalculationTask;
 
@@ -18,6 +19,7 @@ public class InMemoryDataProcessor implements DataProcessingService {
         this.tasks = new HashMap<String, CalculationTask>();
     }
     @Override
+    @Async
     public void sendForProcessing(CalculationTask task) {
         this.tasks.put(task.getId(), task);
         task.setStatus("Sent for processing");

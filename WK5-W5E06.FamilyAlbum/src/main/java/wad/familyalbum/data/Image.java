@@ -1,5 +1,6 @@
 package wad.familyalbum.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -30,6 +31,7 @@ public class Image implements Serializable {
     private String contentType;
     @Lob
     @Column(name = "data", length = 4 * 1024 * 1024, nullable = false)
+    @JsonIgnore
     private byte[] data;
 
     public Image() {

@@ -2,6 +2,7 @@ package wad.strato.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class ObservationPoint implements Serializable {
     @Min(1000000L)
     @Max(260000000L)
     private Long longitude;
-    @OneToMany(mappedBy = "observationPoint")
+    @OneToMany(mappedBy = "observationPoint", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Observation> observations;
 
     public Long getId() {
@@ -77,5 +78,13 @@ public class ObservationPoint implements Serializable {
 
     public void setObservations(List<Observation> observations) {
         this.observations = observations;
+    }
+
+    public void addObservation(Observation obs) {
+        if (!observations.contains(obs)) {
+            observations.add(obs);
+        }
+
+        obs.setObservationPoint(this);
     }
 }

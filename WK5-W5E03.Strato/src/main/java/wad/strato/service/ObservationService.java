@@ -13,7 +13,5 @@ import wad.strato.domain.Observation;
  */
 public interface ObservationService {
 
-    public void create(Observation obs);
-
     public Page<Observation> list(Integer page);
 }

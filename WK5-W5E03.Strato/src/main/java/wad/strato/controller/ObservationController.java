@@ -1,5 +1,6 @@
 package wad.strato.controller;
 
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class ObservationController {
         model.addAttribute("observationpoints", observationPointService.list());
         Page<Observation> page = observationService.list(pageNumber);
         model.addAttribute("observations", page.getContent());
-        model.addAttribute("totalPages", page.getTotalPages()+1);
+        model.addAttribute("totalPages", page.getTotalPages() + 1);
         model.addAttribute("pageNumber", pageNumber);
         return "observations";
     }
@@ -42,6 +43,7 @@ public class ObservationController {
         }
         Observation obs = new Observation();
         obs.setCelsius(form.getCelsius());
+        obs.setTimestamp(new Date());
 
         observationPointService.addObservation(obs, form.getObservationPointId());
         return "redirect:observation";

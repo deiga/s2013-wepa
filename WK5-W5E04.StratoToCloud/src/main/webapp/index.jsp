@@ -6,6 +6,6 @@
         <title>Remember to add the Heroku URL here</title>
     </head>
     <body>
-        <h1>My app is deployed at: </h1>
+        <h1>My app is deployed at: http://infinite-thicket-9451.herokuapp.com/</h1>
     </body>
 </html>

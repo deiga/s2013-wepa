@@ -24,7 +24,10 @@
                 <sec:user name="seppo" password="tiitinen" authorities="admin" />
                 <sec:user name="robocop" password="123" authorities="supo" />
                 <sec:user name="nsa" password="nsa" authorities="admin" />
+                <sec:user name="media" password="media" authorities="media" />
             </sec:user-service>
         </sec:authentication-provider>
     </sec:authentication-manager>
+    
+    <sec:global-method-security pre-post-annotations="enabled" />
 </beans>

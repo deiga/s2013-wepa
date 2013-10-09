@@ -10,7 +10,14 @@
     </head>
     <body>
         <h1>Tiitinen List</h1>
+        
+        <sec:authorize access="hasRole('media')">
+            <ul>
+                <li>Susanna Reinboth</li>
+            </ul>
+        </sec:authorize>
 
+        <sec:authorize access="hasAnyRole('admin', 'supo')">
         <ul>
             <c:forEach var="item" items="${list}">
                 <li>(${item.id}) ${item.content}</li>
@@ -32,6 +39,7 @@
                 <input type="submit" value="ADD">
             </p>
         </form:form>
+        </sec:authorize>
 
         <p><a href="${pageContext.request.contextPath}/j_spring_security_logout">Logout!</a></p>
     </body>

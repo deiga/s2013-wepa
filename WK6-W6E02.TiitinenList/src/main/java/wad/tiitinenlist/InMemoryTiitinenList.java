@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +22,7 @@ public class InMemoryTiitinenList implements TiitinenListService {
     }
 
     @Override
+    @PreAuthorize("hasAnyRole('admin','supo')")
     public ListItem create(String content) {
         counter++;
 
@@ -33,6 +35,7 @@ public class InMemoryTiitinenList implements TiitinenListService {
     }
 
     @Override
+    @PreAuthorize("hasRole('admin')")
     public void remove(Long identifier) {
         items.remove(identifier);
     }

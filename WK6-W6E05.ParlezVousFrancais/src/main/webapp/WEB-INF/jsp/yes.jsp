@@ -4,12 +4,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Parlez vous Français?</title>
+        <title><spring:message code="label.question" /></title>
     </head>
     <body>
 
-        <h1>Magnifique!</h1>
-        <a href="${pageContext.request.contextPath}/app/">Répondre encore</a>
+        <h1><spring:message code="label.great" /></h1>
+        <a href="${pageContext.request.contextPath}/app/"><spring:message code="label.answerAgain" /></a>
 
     </body>
 </html>

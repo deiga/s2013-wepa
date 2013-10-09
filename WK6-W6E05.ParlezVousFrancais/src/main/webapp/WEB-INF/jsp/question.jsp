@@ -4,19 +4,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Parlez vous Français?</title>
+        <title><spring:message code="label.question" /></title>
     </head>
     <body>
 
-        <h1>Parlez vous Français?</h1>
+        <h1><spring:message code="label.question" /></h1>
 
         <form action="${pageContext.request.contextPath}/app/" method="POST">
-            <input type="radio" name="answer" value="yes" /> Oui<br>
-            <input type="radio" name="answer" value="no" checked /> Non<br><br>
-            <input type="submit" value="Répondre" />
+            <input type="radio" name="answer" value="yes" /> <spring:message code="label.yes" /><br>
+            <input type="radio" name="answer" value="no" checked /> <spring:message code="label.no" /><br><br>
+            <input type="submit" value="<spring:message code="label.answer" />" />
         </form>
 
-        <p>${counter} réponses</p>
+            <p><spring:message code="label.answers" arguments="${counter}" /></p>
 
     </body>
 </html>

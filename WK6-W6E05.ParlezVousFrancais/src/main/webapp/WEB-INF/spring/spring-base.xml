@@ -24,6 +24,13 @@
     </bean>
 
     <!-- Lisää CookieLocaleResolver keksipohjaiselle lokaalin tunnistamiselle -->
-
+    
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en" />
+    </bean>
+        
     <!-- Lisää Interceptoreihin LocaleChangeInterceptor kuuntelemaan lokaalin muutoksia (kun polkuun lisätään esim. ?locale=fi vaihdetaan kieli suomeksi). -->
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+    </mvc:interceptors>
 </beans>

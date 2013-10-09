@@ -10,6 +10,10 @@
     <sec:http use-expressions="true">
         <sec:intercept-url pattern="/" access="permitAll" />
         <sec:intercept-url pattern="/index.jsp" access="permitAll" />
+        <sec:intercept-url pattern="/public/**" access="permitAll" />
+        <sec:intercept-url pattern="/secret/**" access="hasRole('user')" />
+        <sec:intercept-url pattern="/app/**" access="hasRole('user')" />
+        <sec:intercept-url pattern="/**" access="denyAll" />
         <sec:form-login />
         <sec:logout />
     </sec:http>
@@ -18,6 +22,7 @@
         <sec:authentication-provider>
             <sec:user-service>
                 <sec:user name="mikael" password="rendezvous" authorities="user" />
+                <sec:user name="kasper" password="spring" authorities="user" />
             </sec:user-service>
         </sec:authentication-provider>
     </sec:authentication-manager>

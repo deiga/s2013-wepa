@@ -24,15 +24,15 @@
 
         <ol>
             <c:forEach var="movie" items="${movies}">
-                <li>${movie.name} (${movie.lengthInMinutes} min)
-                    <form method="POST" action="${pageContext.request.contextPath}/app/movies/${movie.id}/delete">
-                        <input type="submit" value="Remove" id="remove-${movie.id}"/>
+                <li><c:out value="${movie.name}"/> (<c:out value="${movie.lengthInMinutes}"/> min)
+                    <form method="POST" action="${pageContext.request.contextPath}/app/movies/<c:out value="${movie.id}"/>/delete">
+                        <input type="submit" value="Remove" id="remove-<c:out value="${movie.id}"/>"/>
                     </form><br/>
 
                     Actors:</br>
                     <ul>
                         <c:forEach var="actor" items="${movie.actors}">
-                            <li>${actor.name}</li>
+                            <li><c:out value="${actor.name}" /></li>
                         </c:forEach>
                     </ul>
                 </li>

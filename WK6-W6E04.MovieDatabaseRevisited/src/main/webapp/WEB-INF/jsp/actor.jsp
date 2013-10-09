@@ -4,17 +4,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${actor.name}</title>
+        <title><c:out value="${actor.name}"/></title>
     </head>
     <body>
-        <h1>Actor ${actor.name}</h1>
+        <h1>Actor <c:out value="${actor.name}"/></h1>
         
         <h2>Movies</h2>
 
         <div>
             <ul>
                 <c:forEach var="movie" items="${actor.movies}">
-                    <li>${movie.name}</li>
+                    <li><c:out value="${movie.name}"/></li>
                 </c:forEach>
             </ul>
         </div>
@@ -26,7 +26,7 @@
                 <form method="POST" action="${pageContext.request.contextPath}/app/actors/<c:out value="${actor.id}"/>/movies">
                     <select name="movieId">
                         <c:forEach var="movie" items="${movies}">
-                            <option value="${movie.id}">${movie.name}</option>
+                            <option value="<c:out value="${movie.id}"/>"><c:out value="${movie.name}"/></option>
                         </c:forEach>
                     </select>
                     <input type="submit" value="Assign" id="add-to-movie"/>

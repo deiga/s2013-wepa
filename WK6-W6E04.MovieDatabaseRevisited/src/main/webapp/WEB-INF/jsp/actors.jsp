@@ -23,15 +23,15 @@
 
         <ol>
             <c:forEach var="actor" items="${actors}">
-            <li><a href="${pageContext.request.contextPath}/app/actors/${actor.id}">${actor.name}</a>
-                    <form method="POST" action="${pageContext.request.contextPath}/app/actors/${actor.id}/delete">
-                        <input type="submit" value="Remove" id="remove-${actor.id}"/>
+            <li><a href="${pageContext.request.contextPath}/app/actors/<c:out value="${actor.id}"/>"><c:out value="${actor.name}"/></a>
+                    <form method="POST" action="${pageContext.request.contextPath}/app/actors/<c:out value="${actor.id}"/>/delete">
+                        <input type="submit" value="Remove" id="remove-<c:out value="${actor.id}"/>"/>
                     </form><br/>
 
                     Known for:<br/>
                     <ul>
                         <c:forEach var="movie" items="${actor.movies}">
-                            <li>${movie.name}</li>
+                            <li><c:out value="${movie.name}"/></li>
                         </c:forEach>
                     </ul>
                 </li>
